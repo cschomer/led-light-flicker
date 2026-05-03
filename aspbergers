@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wired Differently — A Living Editorial on the Asperger's Mind</title>
+<meta name="description" content="An editorial experience about what it is to live in a nervous system that receives everything at full volume — and to see the world more precisely because of it." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04040A;
+    --bg-elev: #0A0A14;
+    --bg-card: #0E0E1A;
+    --line: rgba(201, 168, 76, 0.12);
+    --line-strong: rgba(201, 168, 76, 0.28);
+    --gold: #C9A84C;
+    --gold-soft: rgba(201, 168, 76, 0.7);
+    --gold-faint: rgba(201, 168, 76, 0.18);
+    --text: #E8E4D6;
+    --text-dim: #9A9482;
+    --text-quiet: #6B6657;
+    --green: #7ecfa0;
+    --green-soft: rgba(126, 207, 160, 0.12);
+    --blue: #9dc0e0;
+    --blue-soft: rgba(157, 192, 224, 0.12);
+    --rose: #e07a8f;
+    --rose-soft: rgba(224, 122, 143, 0.12);
+    --violet: #b39ddb;
+    --amber: #e0b974;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --display: 'Bebas Neue', Impact, sans-serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    /* Subtle film grain — registered, not noisy */
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(201, 168, 76, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(157, 192, 224, 0.03) 0%, transparent 55%);
+  }
+
+  ::selection { background: var(--gold); color: var(--bg); }
+
+  /* ========== TYPOGRAPHY ========== */
+  .eyebrow {
+    font-family: var(--display);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .display {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+  .italic-gold { font-style: italic; color: var(--gold); font-weight: 300; }
+  .data {
+    font-family: var(--display);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  /* ========== LAYOUT PRIMITIVES ========== */
+  .wrap {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+  }
+
+  section { position: relative; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.2s cubic-bezier(.16,.84,.32,1), transform 1.2s cubic-bezier(.16,.84,.32,1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 2.2rem;
+    color: var(--gold);
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+  .hero h1 {
+    font-size: clamp(3.2rem, 11vw, 9.5rem);
+    margin-bottom: 1.6rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .hero-line {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 2vw, 1.65rem);
+    font-style: italic;
+    color: var(--text-dim);
+    max-width: 38ch;
+    line-height: 1.45;
+  }
+  .hero-meta {
+    position: absolute;
+    bottom: 2.4rem;
+    left: 0; right: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+  .hero-meta .label {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    color: var(--text-quiet);
+  }
+  .freq {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 56px;
+  }
+  .freq i {
+    display: block;
+    width: 3px;
+    background: var(--gold);
+    opacity: 0.6;
+    border-radius: 2px;
+    animation: freq 1.6s ease-in-out infinite;
+  }
+  @keyframes freq {
+    0%, 100% { transform: scaleY(0.35); opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 0.85; }
+  }
+
+  /* ========== POEM ========== */
+  .poem {
+    padding: clamp(7rem, 14vh, 12rem) 0;
+    border-top: 1px solid var(--line);
+  }
+  .poem-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.2fr;
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .poem-grid .label-col {
+    position: sticky;
+    top: 6rem;
+  }
+  .poem-grid .label-col .num {
+    font-family: var(--display);
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+  .poem-grid .label-col .lab {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--text-quiet);
+  }
+  .stanza {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 3rem;
+    max-width: 42ch;
+  }
+  .stanza .roman {
+    display: block;
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .stanza p { margin-bottom: 0.4rem; }
+  .stanza:last-child { margin-bottom: 0; }
+
+  @media (max-width: 768px) {
+    .poem-grid { grid-template-columns: 1fr; }
+    .poem-grid .label-col { position: static; margin-bottom: 2rem; }
+  }
+
+  /* ========== STATS ========== */
+  .stats {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(4rem, 8vh, 6rem) 0;
+    background: var(--bg-elev);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+  .stat {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(1rem, 2vw, 1.8rem);
+  }
+  .stat:first-child { border-left: none; }
+  .stat .num {
+    font-size: clamp(3rem, 6vw, 5.4rem);
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .stat .desc {
+    font-family: var(--serif);
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    color: var(--text-dim);
+    line-height: 1.4;
+    max-width: 22ch;
+  }
+  .stat .src {
+    font-family: var(--display);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--text-quiet);
+    margin-top: 0.8rem;
+  }
+
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.5rem; }
+    .stat { border-left: none; padding-left: 0; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 1.5rem; }
+  }
+  @media (max-width: 540px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat:nth-child(odd) { border-right: none; padding-right: 0; }
+    .stat { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; }
+    .stat:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  /* ========== SENSORY ========== */
+  .section-head {
+    padding: clamp(6rem, 12vh, 9rem) 0 clamp(3rem, 6vh, 5rem);
+  }
+  .section-head .eyebrow { margin-bottom: 1.4rem; }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .section-head h2 em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .section-head p {
+    margin-top: 1.6rem;
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    font-weight: 300;
+    color: var(--text-dim);
+    max-width: 60ch;
+    line-height: 1.55;
+  }
+
+  .sensory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(4rem, 8vh, 6rem);
+  }
+  .sense {
+    background: var(--bg);
+    padding: 2.4rem 1.8rem 2rem;
+    position: relative;
+    transition: background 0.5s ease;
+  }
+  .sense::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent, var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+  }
+  .sense:hover::before { transform: scaleX(1); }
+  .sense:hover { background: var(--bg-card); }
+  .sense .ico {
+    display: block;
+    width: 28px; height: 28px;
+    margin-bottom: 1.6rem;
+    color: var(--accent, var(--gold));
+  }
+  .sense .ico svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.4; }
+  .sense h3 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    letter-spacing: 0.18em;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+  .sense .rating {
+    font-family: var(--display);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    color: var(--accent, var(--gold));
+    margin-bottom: 1.2rem;
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid var(--accent, var(--gold));
+    background: rgba(255,255,255,0.02);
+  }
+  .sense p {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  @media (max-width: 1100px) { .sensory-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .sensory-grid { grid-template-columns: 1fr; } }
+
+  /* ========== INTERLUDE ========== */
+  .interlude {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(7rem, 14vh, 11rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .interlude::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    max-width: 22ch;
+    margin: 0 auto clamp(3rem, 6vh, 5rem);
+    text-align: center;
+    position: relative;
+  }
+  .pull::before, .pull::after {
+    content: '';
+    display: block;
+    width: 36px; height: 1px;
+    background: var(--gold);
+    margin: 1.4rem auto;
+    opacity: 0.6;
+  }
+  .pull em { color: var(--gold); }
+  .alex-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .alex-grid h3 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    letter-spacing: 0.24em;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .alex-grid p {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  @media (max-width: 760px) { .alex-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  /* ========== STRENGTHS ========== */
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(4rem, 8vh, 6rem);
+  }
+  .strength {
+    background: var(--bg);
+    padding: 2.6rem 2rem;
+    position: relative;
+    transition: background 0.4s ease;
+  }
+  .strength:hover { background: var(--bg-card); }
+  .strength .num {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-soft);
+    margin-bottom: 1.2rem;
+  }
+  .strength h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 1.8vw, 1.7rem);
+    color: var(--gold);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .strength p {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+  .strength cite {
+    display: block;
+    font-family: var(--display);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: var(--text-quiet);
+    font-style: normal;
+  }
+
+  @media (max-width: 1000px) { .strengths-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .strengths-grid { grid-template-columns: 1fr; } }
+
+  /* ========== PROS / CONS ========== */
+  .pc {
+    padding-bottom: clamp(4rem, 8vh, 6rem);
+  }
+  .pc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .pc-col {
+    background: var(--bg);
+    padding: clamp(2rem, 4vw, 3rem);
+  }
+  .pc-col h3 {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    letter-spacing: 0.28em;
+    margin-bottom: 0.4rem;
+  }
+  .pc-col .sub {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-quiet);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .pc-col.gain h3 { color: var(--green); }
+  .pc-col.cost h3 { color: var(--rose); }
+  .pc-col ul { list-style: none; }
+  .pc-col li {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+    padding: 0.9rem 0 0.9rem 1.4rem;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    font-weight: 300;
+  }
+  .pc-col li:last-child { border-bottom: none; }
+  .pc-col li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 1.45rem;
+    width: 6px; height: 1px;
+  }
+  .pc-col.gain li::before { background: var(--green); }
+  .pc-col.cost li::before { background: var(--rose); }
+  .pc-col li b {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-right: 0.6rem;
+    color: var(--text);
+  }
+  .pc-col.gain li b { color: var(--green); }
+  .pc-col.cost li b { color: var(--rose); }
+
+  @media (max-width: 800px) { .pc-grid { grid-template-columns: 1fr; } }
+
+  /* ========== TABLE ========== */
+  .compare {
+    padding-bottom: clamp(4rem, 8vh, 6rem);
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .compare-table thead th {
+    font-family: var(--display);
+    font-size: 0.78rem;
+    letter-spacing: 0.26em;
+    text-align: left;
+    padding: 1.4rem 1.2rem;
+    color: var(--text-quiet);
+    border-bottom: 1px solid var(--line);
+    font-weight: 400;
+  }
+  .compare-table thead th:nth-child(2) { color: var(--green); }
+  .compare-table thead th:nth-child(3) { color: var(--blue); }
+  .compare-table tbody td {
+    padding: 1.5rem 1.2rem;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table tbody td:first-child {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    width: 22%;
+    padding-top: 1.7rem;
+  }
+  .compare-table tbody td:nth-child(2) { color: var(--green); width: 39%; background: var(--green-soft); }
+  .compare-table tbody td:nth-child(3) { color: var(--blue); width: 39%; background: var(--blue-soft); }
+
+  @media (max-width: 760px) {
+    .compare-table thead { display: none; }
+    .compare-table, .compare-table tbody, .compare-table tr, .compare-table td { display: block; width: 100%; }
+    .compare-table tbody td:first-child { width: 100%; padding-bottom: 0.4rem; padding-top: 1.4rem; }
+    .compare-table tbody td:nth-child(2),
+    .compare-table tbody td:nth-child(3) { width: 100%; padding-top: 0.4rem; padding-bottom: 0.4rem; }
+    .compare-table tbody tr { padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+    .compare-table tbody tr td { border-bottom: none; }
+  }
+
+  /* ========== CLOSING ========== */
+  .closing {
+    position: relative;
+    padding: clamp(8rem, 16vh, 14rem) 0 clamp(6rem, 12vh, 10rem);
+    text-align: center;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+  }
+  .ghost {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--display);
+    font-size: clamp(7rem, 22vw, 22rem);
+    letter-spacing: 0.06em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--gold-faint);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    animation: breathe 6s ease-in-out infinite;
+    white-space: nowrap;
+  }
+  @keyframes breathe {
+    0%, 100% { -webkit-text-stroke-color: rgba(201, 168, 76, 0.10); transform: translate(-50%, -50%) scale(1); }
+    50% { -webkit-text-stroke-color: rgba(201, 168, 76, 0.22); transform: translate(-50%, -50%) scale(1.02); }
+  }
+  .closing-content {
+    position: relative;
+    z-index: 1;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+  .closing h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 2.4rem;
+  }
+  .closing h2 em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .closing p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    line-height: 1.65;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 1.4rem;
+  }
+  .closing p.final {
+    color: var(--text);
+    font-style: italic;
+    margin-top: 2.4rem;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0 4.5rem;
+    text-align: center;
+  }
+  footer p {
+    font-family: var(--display);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: var(--text-quiet);
+    line-height: 2;
+    max-width: 80ch;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ========== MUSIC PLAYER ========== */
+  .player {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    background: rgba(10, 10, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--gold-faint);
+    border-radius: 4px;
+    padding: 0.8rem 1rem 0.8rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+  .player.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .player button.toggle {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+    flex-shrink: 0;
+  }
+  .player button.toggle:hover { background: var(--gold); color: var(--bg); }
+  .player button.toggle svg { width: 12px; height: 12px; fill: currentColor; }
+  .player .label-block { display: flex; flex-direction: column; gap: 2px; padding-right: 0.4rem; }
+  .player .title {
+    font-family: var(--display);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--text);
+  }
+  .player .sub {
+    font-family: var(--display);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--text-quiet);
+  }
+  .wave {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 18px;
+    width: 28px;
+  }
+  .wave i {
+    display: block;
+    width: 2px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0.5;
+    border-radius: 1px;
+    transform-origin: center;
+    transform: scaleY(0.3);
+  }
+  .player.playing .wave i {
+    animation: wave 1.1s ease-in-out infinite;
+  }
+  .wave i:nth-child(1) { animation-delay: 0s; }
+  .wave i:nth-child(2) { animation-delay: 0.12s; }
+  .wave i:nth-child(3) { animation-delay: 0.24s; }
+  .wave i:nth-child(4) { animation-delay: 0.36s; }
+  .wave i:nth-child(5) { animation-delay: 0.48s; }
+  .wave i:nth-child(6) { animation-delay: 0.36s; }
+  .wave i:nth-child(7) { animation-delay: 0.24s; }
+  .wave i:nth-child(8) { animation-delay: 0.12s; }
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.3); opacity: 0.5; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  @media (max-width: 540px) {
+    .player .label-block { display: none; }
+    .player { padding: 0.7rem; gap: 0.7rem; }
+  }
+
+  /* ========== UTIL ========== */
+  .divider-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 3rem 0 4rem;
+    color: var(--gold);
+    opacity: 0.4;
+  }
+  .divider-mark::before, .divider-mark::after {
+    content: '';
+    width: 60px; height: 1px;
+    background: var(--gold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= HERO ============= -->
+<section class="hero">
+  <canvas id="neural"></canvas>
+  <div class="hero-content wrap">
+    <div class="hero-eyebrow eyebrow">An Editorial · The Asperger's Mind</div>
+    <h1 class="display">Wired<br><em>Differently</em></h1>
+    <p class="hero-line">A nervous system that receives the world at full volume — and sees it more precisely because of it.</p>
+  </div>
+  <div class="hero-meta wrap">
+    <span class="label">Vol. I · Field Notes</span>
+    <div class="freq" id="freq" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============= POEM ============= -->
+<section class="poem">
+  <div class="wrap">
+    <div class="poem-grid">
+      <div class="label-col reveal">
+        <div class="num">01</div>
+        <div class="lab">Opening · Sensory Field</div>
+      </div>
+      <div>
+        <div class="stanza reveal">
+          <span class="roman">I.</span>
+          <p>The light above the checkout aisle</p>
+          <p>hums in a register no one else hears,</p>
+          <p>and it sits behind my teeth like a swarm I cannot swallow.</p>
+          <p>The fabric tag against the lower back</p>
+          <p>reads my skin a sermon</p>
+          <p>in a language only the nerves can speak.</p>
+          <p>Three conversations weave the same air at once</p>
+          <p>and my ears refuse to choose.</p>
+        </div>
+        <div class="stanza reveal">
+          <span class="roman">II.</span>
+          <p>A grocery store at four in the afternoon</p>
+          <p>is a battlefield drawn in primary colors —</p>
+          <p>the cart wheel squealing, the speaker overhead</p>
+          <p>reciting prices to no one,</p>
+          <p>a child wailing two aisles down,</p>
+          <p>and I am holding all of it, undiminished —</p>
+          <p>no merciful blur, no compression,</p>
+          <p>the world arriving at its full and unedited weight.</p>
+        </div>
+        <div class="stanza reveal">
+          <span class="roman">III.</span>
+          <p>And still — I dress.</p>
+          <p>I leave the house. I shake the offered hand.</p>
+          <p>I make the small talk that costs me</p>
+          <p>what crossing the desert costs the desert-walker.</p>
+          <p>This is not weakness. This is not bravery.</p>
+          <p>It is the daily, unwitnessed athletics of arriving,</p>
+          <p>and I have done it again today,</p>
+          <p>and I will do it again tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STATS ============= -->
+<section class="stats reveal">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num data">1 in 44</div>
+        <div class="desc">Children identified on the autism spectrum in the United States.</div>
+        <div class="src">CDC · ADDM Network</div>
+      </div>
+      <div class="stat">
+        <div class="num data">90<span style="font-size: 0.6em;">%</span></div>
+        <div class="desc">Report significant sensory processing differences across at least one modality.</div>
+        <div class="src">Frontiers in Psychiatry</div>
+      </div>
+      <div class="stat">
+        <div class="num data">3×</div>
+        <div class="desc">Higher fluid intelligence scores on Raven's Matrices for autistic test-takers in matched studies.</div>
+        <div class="src">Mottron et al. · Psychological Sci.</div>
+      </div>
+      <div class="stat">
+        <div class="num data">40<span style="font-size: 0.6em;">%</span></div>
+        <div class="desc">Initially misdiagnosed with mood, anxiety, or personality disorders before identification.</div>
+        <div class="src">Lancet Psychiatry · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SENSORY ============= -->
+<section>
+  <div class="wrap section-head reveal">
+    <div class="eyebrow">02 · The Sensory World</div>
+    <h2 class="display">Every channel <em>open at once.</em><br>No volume knob.</h2>
+    <p>The autistic nervous system does not perform the unconscious filtering that allows neurotypical brains to ignore the hum of fluorescents, the tag in a shirt, the conversation at the next table. Everything arrives. Everything is held. Below, eight registers of input — and what they cost.</p>
+  </div>
+
+  <div class="wrap reveal">
+    <div class="sensory-grid">
+      <article class="sense" style="--accent: #e0b974;">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></span>
+        <h3>Light</h3>
+        <span class="rating">EXTREME</span>
+        <p>Fluorescent tubes do not illuminate; they buzz at sixty cycles per second against the back of the eye. Sunlight through venetian blinds becomes a flicker the body registers as pain. Screens at default brightness are a slow, ambient assault.</p>
+      </article>
+
+      <article class="sense" style="--accent: #e07a8f;">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 12c2-2 4-2 4 0s2 2 2 0 2-4 2-4M11 8c2 0 4-3 4-3M15 5c2 0 6 5 6 7M15 19c2 0 6-5 6-7M3 12c2 2 4 2 4 0s2-2 2 0 2 4 2 4M11 16c2 0 4 3 4 3"/></svg></span>
+        <h3>Sound</h3>
+        <span class="rating">EXTREME</span>
+        <p>The HVAC system in a quiet room is a presence, not an absence. Two voices at the next table cannot be filtered — both are heard, weighted, and parsed simultaneously. Cocktail-party hearing fails; every conversation in the room remains audible at once.</p>
+      </article>
+
+      <article class="sense" style="--accent: #b39ddb;">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M5 12c2-3 5-3 7 0s5 3 7 0M3 18c3-2 6-2 9 0s6 2 9 0M3 6c3-2 6-2 9 0s6 2 9 0"/></svg></span>
+        <h3>Touch · Texture</h3>
+        <span class="rating">HIGH</span>
+        <p>A clothing tag against the lower back is not a minor irritation but a continuous broadcasting frequency. Wool feels like wire. The wrong sock seam can end a day. Skin is not a boundary; it is an antenna.</p>
+      </article>
+
+      <article class="sense" style="--accent: #C9A84C;">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></span>
+        <h3>Sensory Overload</h3>
+        <span class="rating">EXTREME</span>
+        <p>The grocery store at peak hours is a war of inputs the nervous system cannot triage. The body decides — not the mind — between fight, flight, and shutdown. Recovery from a single overload event can last hours or days.</p>
+      </article>
+
+      <article class="sense" style="--accent: #9dc0e0;">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 2L8 9c-1 2-1 4 0 6s3 3 4 3 3-1 4-3 1-4 0-6L12 2z"/></svg></span>
+        <h3>Temperature</h3>
+        <span class="rating">HIGH</span>
+        <p>Air conditioning that others find pleasant registers as a draft tracking the spine. A degree-and-a-half room change is felt as event, not background. The body cannot ignore what it has been told to ignore.</p>
+      </article>
+
+      <article class="sense" style="--accent: #7ecfa0;">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 2c-3 0-5 3-5 6 0 4 5 14 5 14s5-10 5-14c0-3-2-6-5-6z"/><circle cx="12" cy="8" r="1.5"/></svg></span>
+        <h3>Smell</h3>
+        <span class="rating">HIGH</span>
+        <p>Perfume in an elevator persists in the sinuses long after exit. A coworker's lunch reaches across an open-plan office. The nose has no off switch and no door to close.</p>
+      </article>
+
+      <article class="sense" style="--accent: #e0b974;">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 4v8c0 4 3 6 6 6s6-2 6-6V4M9 4v6M15 4v6"/></svg></span>
+        <h3>Taste · Food Texture</h3>
+        <span class="rating">HIGH</span>
+        <p>It is rarely the flavor. It is the wet, the slimy, the gritty, the unexpected pop of something hidden inside something else. The mouth is honest; it cannot pretend a texture is not what it is.</p>
+      </article>
+
+      <article class="sense" style="--accent: #e07a8f;">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>Change · Unpredictability</h3>
+        <span class="rating">EXTREME</span>
+        <p>A meeting moved fifteen minutes is a small earthquake — not the time loss, but the recalibration. Every contingency, every dependent thread, must be re-rendered. The architecture of the day is structural, not preference.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= INTERLUDE / ALEXITHYMIA ============= -->
+<section class="interlude reveal">
+  <div class="wrap">
+    <div class="pull">
+      Not a broken violin. <em>A different instrument.</em><br>Tuned to frequencies most ears were never built to hear.
+    </div>
+    <div class="alex-grid">
+      <div>
+        <h3>Alexithymia · The Body That Speaks First</h3>
+        <p>For roughly half of autistic adults, an emotion does not arrive as a feeling. It arrives as a sensation — a tightness in the chest, a heat behind the eyes, a hollow in the stomach, a low static at the base of the skull. The body has already responded; the label has not yet been retrieved.</p>
+      </div>
+      <div>
+        <h3>The Translation Lag</h3>
+        <p>Asked <em>How are you?</em>, the autistic mind may need to scan the body, identify the somatic signal, and consult an internal lexicon to translate sensation into the agreed-upon emotional vocabulary. The pause before the answer is not avoidance. It is honest work — the work of finding a true name for something that arrived without one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STRENGTHS ============= -->
+<section>
+  <div class="wrap section-head reveal">
+    <div class="eyebrow">03 · The Architecture's Gifts</div>
+    <h2 class="display">What this nervous system <em>can do</em><br>that others, on average, cannot.</h2>
+    <p>The same wiring that costs so much also produces capability of a quality the neurotypical brain rarely accesses. The research is now substantial. The list below is not consolation — it is documented advantage.</p>
+  </div>
+
+  <div class="wrap reveal">
+    <div class="strengths-grid">
+      <article class="strength">
+        <div class="num">01</div>
+        <h3>Pattern Recognition</h3>
+        <p>Enhanced perceptual functioning produces detection of regularities — in code, in data, in behavior, in music — that are invisible to consensus-trained minds. Bottom-up processing, missing the filter, sees the whole field at once.</p>
+        <cite>Mottron et al. · Trends in Cognitive Sciences</cite>
+      </article>
+      <article class="strength">
+        <div class="num">02</div>
+        <h3>Hyperfocus</h3>
+        <p>What looks like obsession is sustained biological flow — attention measured in hours, not minutes. The work that emerges from such depth has the precision of someone who saw the entire structure simultaneously, then refined it without interruption.</p>
+        <cite>Frontiers in Human Neuroscience · 2018</cite>
+      </article>
+      <article class="strength">
+        <div class="num">03</div>
+        <h3>Memory &amp; Recall</h3>
+        <p>Verbatim retention of conversations months old. The exact shelf placement of an item seen once. The brain encodes detail others discard — and indexes it by sensory signature, not by gist.</p>
+        <cite>Bowler et al. · Memory &amp; Cognition</cite>
+      </article>
+      <article class="strength">
+        <div class="num">04</div>
+        <h3>Detail Precision</h3>
+        <p>The misalignment in the spreadsheet others scrolled past is the first thing seen. The off-by-one error. The wrong word. Quality control is not a job; it is a perceptual default the system cannot switch off.</p>
+        <cite>Happé · Weak Central Coherence Theory</cite>
+      </article>
+      <article class="strength">
+        <div class="num">05</div>
+        <h3>Radical Honesty</h3>
+        <p>Social lies require constant computation. The autistic mind, often unable or unwilling to perform that computation, simply tells the truth. This is sometimes uncomfortable. It is always reliable. Crisis teams rebuild around such people.</p>
+        <cite>Crompton et al. · Autism · 2020</cite>
+      </article>
+      <article class="strength">
+        <div class="num">06</div>
+        <h3>Principled Integrity</h3>
+        <p>Once a principle is internalized, it is not negotiable for social convenience. The result is difficult dinner-party guests and indispensable colleagues when something must hold. Ethics here are structural, not performative.</p>
+        <cite>Frontiers in Psychiatry · 2025</cite>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============= PRO / CON ============= -->
+<section class="pc">
+  <div class="wrap section-head reveal" style="padding-top: clamp(2rem, 4vh, 3rem);">
+    <div class="eyebrow">04 · The Ledger</div>
+    <h2 class="display">Equal weight. <em>Both columns true.</em></h2>
+    <p>To honor only the gift is sentimental. To honor only the cost is cruel. The list below holds both in the same hand.</p>
+  </div>
+  <div class="wrap reveal">
+    <div class="pc-grid">
+      <div class="pc-col gain">
+        <h3>The Gift</h3>
+        <p class="sub">What this architecture gives.</p>
+        <ul>
+          <li><b>Pattern eyes</b>—structures in data, code, music, and behavior detected before others register that a structure exists.</li>
+          <li><b>Deep focus</b>—sustained attention measured in hours; flow as the default operating mode, not a rare state.</li>
+          <li><b>Honest words</b>—what is said is what is meant; no decoder ring required for those exhausted by translation.</li>
+          <li><b>Total recall</b>—verbatim memory of conversations, papers, places, and the precise sequence of events.</li>
+          <li><b>Justice instinct</b>—fairness registered viscerally; ethical violations felt as something close to physical pain.</li>
+          <li><b>Loyal heart</b>—friendships, when made, do not erode with distance, time, or social drift.</li>
+          <li><b>Original mind</b>—bottom-up reasoning produces solutions outside the consensus path most teams have already worn smooth.</li>
+          <li><b>Sensory depth</b>—the music, the texture, the color, the wine: experienced at a fidelity others rarely access.</li>
+          <li><b>Detail integrity</b>—the misplaced comma, the off-by-one, the inconsistency: caught at first pass, every pass.</li>
+          <li><b>Earned mastery</b>—what is learned is learned completely; surface knowledge is rejected by the system itself.</li>
+        </ul>
+      </div>
+      <div class="pc-col cost">
+        <h3>The Cost</h3>
+        <p class="sub">What it asks in exchange.</p>
+        <ul>
+          <li><b>Sensory tax</b>—the world arrives at full volume; ordinary days require unseen recovery time.</li>
+          <li><b>Social labor</b>—decoding unspoken rules is exhausting work others do not see and rarely credit.</li>
+          <li><b>Change pain</b>—small unexpected shifts trigger a disproportionate destabilization of the entire day.</li>
+          <li><b>Burnout cliff</b>—masking long enough produces collapse; recovery measured in weeks, sometimes months.</li>
+          <li><b>Eye contact</b>—physically overwhelming or actively painful; mistaken for evasion by those who do not know.</li>
+          <li><b>Alexithymia</b>—emotion arrives as somatic noise; the name for it is retrieved later, sometimes much later.</li>
+          <li><b>Literal mind</b>—sarcasm, idiom, hint, and implication parsed late, partially, or missed entirely.</li>
+          <li><b>Routine dependence</b>—the architecture of the day is structural, not preference; its disruption is felt as injury.</li>
+          <li><b>Misdiagnosis history</b>—bipolar, ADHD, OCD, depression — all named, often medicated, before the actual word.</li>
+          <li><b>Loneliness arithmetic</b>—connection wanted; the cost of seeking it sometimes greater than the cost of going without.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= COMPARISON ============= -->
+<section class="compare">
+  <div class="wrap section-head reveal" style="padding-top: clamp(2rem, 4vh, 3rem);">
+    <div class="eyebrow">05 · Two Operating Systems</div>
+    <h2 class="display">Same world. <em>Different render.</em></h2>
+    <p>Not better, not worse — different defaults across the same twelve domains.</p>
+  </div>
+  <div class="wrap reveal">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>Asperger's Experience</th>
+          <th>Neurotypical Experience</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sensory Input</td><td>All channels open, full bandwidth, no automatic filter applied.</td><td>Background attenuated unconsciously; only salient signals reach awareness.</td></tr>
+        <tr><td>Focus &amp; Attention</td><td>Hyperfocus in hours; shallow tasks resisted at the biological level.</td><td>Adjustable focus across many parallel demands; comfortable with surface work.</td></tr>
+        <tr><td>Social Processing</td><td>Conscious decoding of every signal; expensive, deliberate, accurate.</td><td>Automatic, parallel, mostly unconscious; cheap and approximate.</td></tr>
+        <tr><td>Memory</td><td>Verbatim, episodic, indexed by sensory detail and exact wording.</td><td>Gist-based, narrative, summarized; the meaning kept, the words discarded.</td></tr>
+        <tr><td>Communication</td><td>Direct, literal, semantically precise; intent and statement aligned.</td><td>Inferential, contextual, often indirect; meaning carried in subtext.</td></tr>
+        <tr><td>Emotion Processing</td><td>Arrives as physical sensation; the label is retrieved afterward.</td><td>Felt and named in near-real-time; signal and word arrive together.</td></tr>
+        <tr><td>Routine &amp; Change</td><td>Routine is structural; unexpected change is destabilizing, not annoying.</td><td>Routine is preference; change is manageable, sometimes welcomed.</td></tr>
+        <tr><td>Fluid Intelligence</td><td>Elevated on abstract reasoning measures (Raven's matrices and analogues).</td><td>Distributed broadly across cognitive domains without sharp peaks.</td></tr>
+        <tr><td>Honesty</td><td>Default state; deception requires effort the system resists.</td><td>Social calibration applied automatically; small lies cost almost nothing.</td></tr>
+        <tr><td>Social Energy</td><td>Finite. Daily expenditure must be budgeted and recovered from.</td><td>Often renewable; replenished, for many, by social contact itself.</td></tr>
+        <tr><td>Sleep</td><td>Disrupted by sensory input, internal cognition, and slow shutdown.</td><td>Generally consolidated; fewer wake-ups from background stimulus.</td></tr>
+        <tr><td>Light Sensitivity</td><td>Photophobia common; fluorescents physically aversive, screens bright.</td><td>Wide range of comfort across most ordinary lighting environments.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============= CLOSING ============= -->
+<section class="closing">
+  <div class="ghost" aria-hidden="true">DIFFERENT</div>
+  <div class="wrap">
+    <div class="closing-content reveal">
+      <div class="eyebrow" style="margin-bottom: 1.6rem;">Coda</div>
+      <h2 class="display">Not broken.<br><em>Different architecture.</em></h2>
+      <p>The cost is real. The grocery store still costs something. The fluorescents still hum. The unannounced visitor still rearranges the day. To pretend otherwise — to flatten the difficulty into the language of <em>quirks</em> or <em>just being yourself</em> — is its own kind of harm, and a particularly modern one.</p>
+      <p>And the gift is real. The pattern in the data, the loyalty that does not erode, the music heard at fidelities others sample. The world received without filter is also the world received in full. There is information here that the rest of the room does not have, and there are rooms held up, quietly, by the people who can hear it.</p>
+      <p class="final">Not better. Not worse. Different architecture, holding up a different roof. Some weather it cannot stand. Other weather it was made for.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sources · NIH / PMC · The Lancet Psychiatry 2024 · Frontiers in Psychiatry 2025 · Nature Genetics · Kennedy Krieger Institute · Healthline Medical · Nationwide Children's Hospital</p>
+</footer>
+
+<!-- ============= MUSIC PLAYER ============= -->
+<div class="player" id="player" aria-label="Ambient score player">
+  <button class="toggle" id="toggle" aria-label="Play ambient score" type="button">
+    <svg id="icon-play" viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z"/></svg>
+  </button>
+  <div class="label-block">
+    <span class="title">Ambient Score</span>
+    <span class="sub">A Minor Pentatonic</span>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+</div>
+
+<script>
+/* ===========================================================
+   NEURAL PARTICLE NETWORK
+   70 particles, gold + blue, edges within 140px, individual
+   phase offsets so the field breathes rather than throbs.
+=========================================================== */
+(function neural() {
+  const canvas = document.getElementById('neural');
+  const ctx = canvas.getContext('2d');
+  let DPR = Math.min(window.devicePixelRatio || 1, 2);
+  let W, H;
+  const N = 70;
+  const MAX = 140;
+  const particles = [];
+
+  function resize() {
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+
+  function init() {
+    resize();
+    particles.length = 0;
+    for (let i = 0; i < N; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+        r: Math.random() * 1.6 + 0.6,
+        phase: Math.random() * Math.PI * 2,
+        type: Math.random() < 0.55 ? 'gold' : 'blue'
+      });
+    }
+  }
+
+  function tick(t) {
+    ctx.clearRect(0, 0, W, H);
+
+    // Edges first, so dots sit on top
+    for (let i = 0; i < N; i++) {
+      const a = particles[i];
+      for (let j = i + 1; j < N; j++) {
+        const b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < MAX * MAX) {
+          const d = Math.sqrt(d2);
+          const alpha = (1 - d / MAX) * 0.22;
+          // edges are gold-tinted by default, blue if both endpoints blue
+          const both = a.type === 'blue' && b.type === 'blue';
+          ctx.strokeStyle = both
+            ? `rgba(157, 192, 224, ${alpha})`
+            : `rgba(201, 168, 76, ${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (let i = 0; i < N; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+
+      const pulse = 0.55 + 0.45 * Math.sin(t * 0.0012 + p.phase);
+      const alpha = 0.4 + 0.5 * pulse;
+      const radius = p.r * (0.85 + 0.4 * pulse);
+      ctx.fillStyle = p.type === 'gold'
+        ? `rgba(201, 168, 76, ${alpha})`
+        : `rgba(157, 192, 224, ${alpha * 0.85})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  init();
+  window.addEventListener('resize', init);
+  requestAnimationFrame(tick);
+})();
+
+/* ===========================================================
+   FREQUENCY BARS — bell curve heights, randomized timing
+=========================================================== */
+(function freqBars() {
+  const wrap = document.getElementById('freq');
+  const N = 29;
+  const center = (N - 1) / 2;
+  const sigma = N / 4.5;
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < N; i++) {
+    const x = (i - center) / sigma;
+    const bell = Math.exp(-0.5 * x * x); // 0..1
+    const height = 8 + bell * 48;        // px
+    const bar = document.createElement('i');
+    bar.style.height = height + 'px';
+    bar.style.animationDuration = (1.1 + Math.random() * 1.6).toFixed(2) + 's';
+    bar.style.animationDelay = (Math.random() * 1.4).toFixed(2) + 's';
+    frag.appendChild(bar);
+  }
+  wrap.appendChild(frag);
+})();
+
+/* ===========================================================
+   SCROLL REVEAL
+=========================================================== */
+(function reveals() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ===========================================================
+   AMBIENT GENERATIVE ENGINE
+   - Drone:  3 sines around A2 (110Hz), slight detune, slow LFO
+   - Harmonic: E3 (164.81), A3 (220), quieter
+   - Melody: A minor pentatonic across 3 octaves, slow attack,
+             long sustain, gentle release, lowpass color
+   - Reverb: synthesized impulse response, ~4s decay
+   - Master gain rises subtly with scroll depth
+=========================================================== */
+const Engine = (function() {
+  let ctx = null;
+  let master = null;
+  let dryGain = null;
+  let wetGain = null;
+  let convolver = null;
+  let droneOscs = [];
+  let harmOscs = [];
+  let lfoOsc = null;
+  let melodyTimer = null;
+  let started = false;
+  let playing = false;
+  let scroll = 0;
+
+  // A minor pentatonic across 3 octaves — A C D E G
+  const NOTES = [
+    110.00, 130.81, 146.83, 164.81, 196.00, // A2 C3 D3 E3 G3
+    220.00, 261.63, 293.66, 329.63, 392.00, // A3 C4 D4 E4 G4
+    440.00, 523.25, 587.33, 659.25, 783.99  // A4 C5 D5 E5 G5
+  ];
+
+  function makeImpulse(seconds) {
+    const rate = ctx.sampleRate;
+    const length = Math.floor(rate * seconds);
+    const buf = ctx.createBuffer(2, length, rate);
+    for (let ch = 0; ch < 2; ch++) {
+      const data = buf.getChannelData(ch);
+      for (let i = 0; i < length; i++) {
+        // exponential decay with a touch of low-passing via averaging
+        const t = i / length;
+        const noise = (Math.random() * 2 - 1);
+        data[i] = noise * Math.pow(1 - t, 2.6);
+      }
+      // simple low-pass smoothing pass — softens harshness
+      for (let i = 1; i < length; i++) {
+        data[i] = data[i] * 0.6 + data[i - 1] * 0.4;
+      }
+    }
+    return buf;
+  }
+
+  function init() {
+    if (started) return;
+    started = true;
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+    master = ctx.createGain();
+    master.gain.value = 0;
+
+    dryGain = ctx.createGain();
+    dryGain.gain.value = 0.62;
+
+    wetGain = ctx.createGain();
+    wetGain.gain.value = 0.42;
+
+    convolver = ctx.createConvolver();
+    convolver.buffer = makeImpulse(4.0);
+
+    master.connect(dryGain).connect(ctx.destination);
+    master.connect(convolver).connect(wetGain).connect(ctx.destination);
+
+    // ----- drone -----
+    const droneBus = ctx.createGain();
+    droneBus.gain.value = 0.085;
+    droneBus.connect(master);
+
+    // shared LFO (0.08Hz) modulating frequency slightly
+    lfoOsc = ctx.createOscillator();
+    lfoOsc.frequency.value = 0.08;
+    const lfoGain = ctx.createGain();
+    lfoGain.gain.value = 0.7; // Hz of frequency modulation
+    lfoOsc.connect(lfoGain);
+    lfoOsc.start();
+
+    [110, 110.4, 109.55].forEach(freq => {
+      const o = ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      lfoGain.connect(o.frequency);
+      o.connect(droneBus);
+      o.start();
+      droneOscs.push(o);
+    });
+
+    // ----- harmonic -----
+    const harmBus = ctx.createGain();
+    harmBus.gain.value = 0.04;
+    harmBus.connect(master);
+    [164.81, 220.00].forEach(freq => {
+      const o = ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      o.connect(harmBus);
+      o.start();
+      harmOscs.push(o);
+    });
+  }
+
+  function noteOn() {
+    if (!playing || !ctx) return;
+    const freq = NOTES[Math.floor(Math.random() * NOTES.length)];
+    const osc = ctx.createOscillator();
+    osc.type = Math.random() > 0.5 ? 'sine' : 'triangle';
+    osc.frequency.value = freq;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    // higher notes get a slightly higher cutoff for clarity
+    filter.frequency.value = Math.min(2200, 600 + freq * 1.5);
+    filter.Q.value = 0.9;
+
+    const env = ctx.createGain();
+    env.gain.value = 0;
+
+    osc.connect(filter);
+    filter.connect(env);
+    env.connect(master);
+
+    const t = ctx.currentTime;
+    // peak loudness varies inversely with pitch so highs don't dominate
+    const peak = 0.085 * (300 / Math.max(150, freq));
+    const ATTACK = 0.4;       // 400ms slow attack
+    const SUSTAIN = 2.6;
+    const RELEASE = 3.0;
+
+    env.gain.setValueAtTime(0, t);
+    env.gain.linearRampToValueAtTime(peak, t + ATTACK);
+    env.gain.linearRampToValueAtTime(peak * 0.55, t + ATTACK + SUSTAIN);
+    env.gain.linearRampToValueAtTime(0, t + ATTACK + SUSTAIN + RELEASE);
+
+    osc.start(t);
+    osc.stop(t + ATTACK + SUSTAIN + RELEASE + 0.1);
+
+    // schedule the next note — overlapping breaths
+    const nextDelay = 1500 + Math.random() * 3500;
+    melodyTimer = setTimeout(noteOn, nextDelay);
+  }
+
+  function targetGain() {
+    // 0.38 baseline -> 1.0 at full scroll
+    return 0.38 + 0.62 * scroll;
+  }
+
+  function play() {
+    init();
+    if (ctx.state === 'suspended') ctx.resume();
+    playing = true;
+    const t = ctx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.linearRampToValueAtTime(targetGain(), t + 1.6);
+    if (!melodyTimer) setTimeout(noteOn, 600);
+  }
+
+  function pause() {
+    playing = false;
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.linearRampToValueAtTime(0, t + 0.7);
+    if (melodyTimer) {
+      clearTimeout(melodyTimer);
+      melodyTimer = null;
+    }
+  }
+
+  function setScroll(p) {
+    scroll = Math.min(1, Math.max(0, p));
+    if (playing && ctx) {
+      const t = ctx.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.linearRampToValueAtTime(targetGain(), t + 0.5);
+    }
+  }
+
+  return { play, pause, setScroll, isPlaying: () => playing };
+})();
+
+/* ===========================================================
+   MUSIC PLAYER UI
+=========================================================== */
+(function player() {
+  const playerEl = document.getElementById('player');
+  const toggle = document.getElementById('toggle');
+  const iconHost = toggle;
+
+  const PLAY_SVG = '<svg viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z"/></svg>';
+  const PAUSE_SVG = '<svg viewBox="0 0 12 12"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg>';
+
+  // appear 2 seconds after load
+  setTimeout(() => playerEl.classList.add('visible'), 2000);
+
+  toggle.addEventListener('click', () => {
+    if (Engine.isPlaying()) {
+      Engine.pause();
+      playerEl.classList.remove('playing');
+      toggle.setAttribute('aria-label', 'Play ambient score');
+      iconHost.innerHTML = PLAY_SVG;
+    } else {
+      Engine.play();
+      playerEl.classList.add('playing');
+      toggle.setAttribute('aria-label', 'Pause ambient score');
+      iconHost.innerHTML = PAUSE_SVG;
+    }
+  });
+
+  // Scroll → master gain
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    Engine.setScroll(p);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
